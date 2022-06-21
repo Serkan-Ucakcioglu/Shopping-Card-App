@@ -12,23 +12,19 @@ const api = () => {
   });
 };
 onMounted(api);
-let active = ref(false)
+let active = ref(false);
 
 const title = computed(() => {
-  return store.getters.getTitle
-})
-
-
+  return store.getters.getTitle;
+});
 
 
 const update = () => {
-  store.dispatch('newItem',data.value)
+  store.dispatch("newItem", data.value);
   active.value = true;
-  store.dispatch('increment')
- return  store.dispatch('updateName')
-}
-
-
+  store.dispatch("increment");
+  return store.dispatch("updateName");
+};
 </script>
 
 <template>
@@ -36,11 +32,18 @@ const update = () => {
   <section>
     <div class="container">
       <div class="product-detail" >
-        <img :src="data.img" :alt="data.title" />
+        <img :src="data.img" :alt="data.title"  />
         <span>{{ data.title }}</span>
         <div class="details">
           <span>${{ data.price }}</span>
-          <button  :class="{active: active == true}"  @click="update" class="buy-btn">{{title}}</button>
+          <span>{{data.quantity}}</span>
+          <button
+            :class="{ active: active == true }"
+            @click="update"
+            class="buy-btn"
+          >
+            {{ title }}
+          </button>
         </div>
       </div>
     </div>

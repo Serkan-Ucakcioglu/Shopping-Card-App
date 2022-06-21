@@ -12,7 +12,6 @@ const data = computed(() => {
 onMounted(() => {
   store.dispatch("getData");
 });
-
 </script>
 
 <template>

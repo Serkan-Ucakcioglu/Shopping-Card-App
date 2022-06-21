@@ -1,12 +1,12 @@
 {
   "data": [
-    { "id": 1, "title": "Trend T-shirt", "price": 23.96 , "img": "https://cdn2.sorsware.com/addax/ContentImages/Product/2021-yaz-sezonu/ADX-0000023996/baskili-oversize-t-shirt-p9546-b5_adx-0000023996_kahve-kahverengi_1_buyuk.jpg"},
-    { "id": 2, "title": "Trend T-shirt", "price": 23.96 , "img":"https://cdn.sorsware.com/jimmykey/ContentImages/Product/2022yaz/22Y01TIZIANO/bisiklet-yaka-basic-modal-t-shirt_22y01tiziano_kizil-kahve-805-kahverengi_1_614x805.jpg"},
-    { "id": 3, "title": "Trend T-shirt", "price": 35.96 , "img":"https://cdn.tommylife.com.tr/p-acik-yesil-baskili-o-yaka-erkek-oversize-t-shirt-88098-t-shirt-tommylife-t12er-88098-163149-30-B.jpg"},
-    { "id": 4, "title": "Trend T-shirt", "price": 55.96, "img":"https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/u1zdvupiwoyyilv7pohm/sportswear-jdi-ti%C5%9F%C3%B6rt%C3%BC-1Jk5gt.png"},
-    { "id": 5, "title": "Nıke Short", "price": 41.10 , "img": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/c48e496d-6d57-4afa-b016-2212dfbe41ad/sportswear-club-%C5%9Fortu-0SBs4t.png" },
-    { "id": 6, "title": "Puma Short", "price": 36.50, "img":"https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa/global/847403/02/mod01/fnd/TUR/w/1000/h/1000/fmt/png" },
-    { "id": 7, "title": "Nıke Eşofman Takımı", "price": 95.00, "img":"https://cdn.dsmcdn.com/mnresize/400/-/ty88/product/media/images/20210403/10/26f3413b/10099774/1/1_org.jpg" },
-    { "id": 8, "title": "Nıke Atlet", "price": 95.00 , "img":"https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f4c2da09-488a-4370-adbd-5ad9bc6629fb/dri-fit-grafikli-antrenman-atleti-9nt9S5.png"}
+    { "id": 1, "quantity": 0, "title": "Trend T-shirt", "price": 23.96 , "img": "https://cdn2.sorsware.com/addax/ContentImages/Product/2021-yaz-sezonu/ADX-0000023996/baskili-oversize-t-shirt-p9546-b5_adx-0000023996_kahve-kahverengi_1_buyuk.jpg"},
+    { "id": 2, "quantity": 0,"title": "Trend T-shirt", "price": 23.96 , "img":"https://cdn.sorsware.com/jimmykey/ContentImages/Product/2022yaz/22Y01TIZIANO/bisiklet-yaka-basic-modal-t-shirt_22y01tiziano_kizil-kahve-805-kahverengi_1_614x805.jpg"},
+    { "id": 3, "quantity": 0,"title": "Trend T-shirt", "price": 35.96 , "img":"https://cdn.tommylife.com.tr/p-acik-yesil-baskili-o-yaka-erkek-oversize-t-shirt-88098-t-shirt-tommylife-t12er-88098-163149-30-B.jpg"},
+    { "id": 4, "quantity": 0,"title": "Trend T-shirt", "price": 55.96, "img":"https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/u1zdvupiwoyyilv7pohm/sportswear-jdi-ti%C5%9F%C3%B6rt%C3%BC-1Jk5gt.png"},
+    { "id": 5, "quantity": 0,"title": "Nıke Short", "price": 41.10 , "img": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/c48e496d-6d57-4afa-b016-2212dfbe41ad/sportswear-club-%C5%9Fortu-0SBs4t.png" },
+    { "id": 6, "quantity": 0,"title": "Puma Short", "price": 36.50, "img":"https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa/global/847403/02/mod01/fnd/TUR/w/1000/h/1000/fmt/png" },
+    { "id": 7, "quantity": 0,"title": "Nıke  Takımı", "price": 95.00, "img":"https://cdn.dsmcdn.com/mnresize/400/-/ty88/product/media/images/20210403/10/26f3413b/10099774/1/1_org.jpg" },
+    { "id": 8, "quantity": 0,"title": "Nıke Atlet", "price": 95.00 , "img":"https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/f4c2da09-488a-4370-adbd-5ad9bc6629fb/dri-fit-grafikli-antrenman-atleti-9nt9S5.png"}
   ]
 }
