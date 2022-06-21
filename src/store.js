@@ -55,7 +55,7 @@ const store = createStore({
       setTimeout(() => {
         title = "Sepete Ekle";
         commit("update", title);
-      }, 2000);
+      }, 1500);
       commit("update", title);
     },
     increment({ commit }) {

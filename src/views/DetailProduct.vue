@@ -6,12 +6,15 @@ import { useStore } from "vuex";
 const props = defineProps(["id"]);
 const data = ref([]);
 const store = useStore();
+
 const api = () => {
   axios.get(`http://localhost:3000/data/${props.id}`).then((res) => {
     data.value = res.data;
   });
 };
-onMounted(api);
+
+
+
 let active = ref(false);
 
 const title = computed(() => {
@@ -25,6 +28,8 @@ const update = () => {
   store.dispatch("increment");
   return store.dispatch("updateName");
 };
+
+onMounted(api);
 </script>
 
 <template>
