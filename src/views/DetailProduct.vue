@@ -1,29 +1,46 @@
 <script setup>
 import HeaderBar from "@/components/HeaderBar.vue";
 import axios from "axios";
-import { ref, defineProps, onMounted } from "vue";
+import { ref, defineProps, onMounted, computed } from "vue";
+import { useStore } from "vuex";
 const props = defineProps(["id"]);
 const data = ref([]);
-
+const store = useStore();
 const api = () => {
-   axios.get(`http://localhost:3000/data/${props.id}`).then((res) => {
-  data.value = res.data;
-  console.log(res.data);
+  axios.get(`http://localhost:3000/data/${props.id}`).then((res) => {
+    data.value = res.data;
+  });
+};
+onMounted(api);
+let active = ref(false)
+
+const title = computed(() => {
+  return store.getters.getTitle
 })
+
+
+
+
+const update = () => {
+  store.dispatch('newItem',data.value)
+  active.value = true;
+  store.dispatch('increment')
+ return  store.dispatch('updateName')
 }
-onMounted(api)
+
+
 </script>
 
 <template>
   <HeaderBar />
   <section>
     <div class="container">
-      <div class="product-detail">
+      <div class="product-detail" >
         <img :src="data.img" :alt="data.title" />
         <span>{{ data.title }}</span>
         <div class="details">
           <span>${{ data.price }}</span>
-          <button class="buy-btn">Sepete Ekle</button>
+          <button  :class="{active: active == true}"  @click="update" class="buy-btn">{{title}}</button>
         </div>
       </div>
     </div>
@@ -76,5 +93,9 @@ onMounted(api)
       }
     }
   }
+}
+
+.active {
+  background: #3fb883 !important;
 }
 </style>

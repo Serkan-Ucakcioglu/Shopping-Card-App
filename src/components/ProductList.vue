@@ -1,30 +1,17 @@
 <script setup>
-import axios from "axios";
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
+import { computed } from "@vue/runtime-core";
 import { useStore } from "vuex";
-const data = ref([]);
+
 const store = useStore();
 
-const api = () => {
-   axios.get("http://localhost:3000/data").then((res) => {
-  data.value = res.data;
-})
+const data = computed(() => {
+  return store.getters.getList;
+});
 
-}
-onMounted(api)
-const title = ref('Sepete Ekle')
-
-const det = (product) => {
-if(product.id == data.value.id){
-
-     store.state.count++
-    title.value = "Sepete Eklendi"
-  setTimeout(() => {
-      title.value = 'Sepete Ekle'
-  }, 2500);
-}   
-}
-
+onMounted(() => {
+  store.dispatch("getData");
+});
 
 </script>
 
@@ -32,15 +19,15 @@ if(product.id == data.value.id){
   <section>
     <div class="container">
       <ul class="product-list">
-        <li v-for="(product ) in data" :key="product.id" >
+        <li v-for="product in data" :key="product.id">
           <router-link :to="{ name: 'Detail', params: { id: product.id } }">
             <img :src="product.img" :alt="product.title" />
             <span>{{ product.title }}</span>
             <div class="add">
               <span>${{ product.price }}</span>
+              {{ product.name }}
             </div>
           </router-link>
-          <button @click="det" class="buy-btn">{{title}}</button>
         </li>
       </ul>
     </div>
@@ -99,7 +86,7 @@ section {
             margin-top: 10px;
           }
           .add {
-            margin-top: 5px;
+            margin-top: 15px;
 
             span {
               margin-left: 10px;
