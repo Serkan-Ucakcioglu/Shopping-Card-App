@@ -1,11 +1,14 @@
 <script setup>
+/*İMPORT */
 import HeaderBar from "@/components/HeaderBar.vue";
 import axios from "axios";
-import { ref, defineProps, onMounted, computed } from "vue";
+import { ref, defineProps, computed, onMounted, watch } from "vue";
 import { useStore } from "vuex";
+/* */
 const props = defineProps(["id"]);
 const data = ref([]);
 const store = useStore();
+let active = ref(false);
 
 const api = () => {
   axios.get(`http://localhost:3000/data/${props.id}`).then((res) => {
@@ -13,21 +16,31 @@ const api = () => {
   });
 };
 
-
-
-let active = ref(false);
-
 const title = computed(() => {
   return store.getters.getTitle;
 });
 
+const checkBasket = computed(() => {
+  return store.state.basket.includes(data.value.id);
+});
 
 const update = () => {
-  store.dispatch("newItem", data.value);
-  active.value = true;
-  store.dispatch("increment");
-  return store.dispatch("updateName");
+  if (checkBasket.value == false) {
+    store.dispatch("newItem", data.value.id);
+    console.log(checkBasket.value);
+    active.value = true;
+  } else {
+    console.log("else");
+  }
 };
+watch(
+  () => data.value.id,
+
+  () => {
+    data.value.id;
+    console.log("data", data.value.id);
+  }
+);
 
 onMounted(api);
 </script>
@@ -36,12 +49,11 @@ onMounted(api);
   <HeaderBar />
   <section>
     <div class="container">
-      <div class="product-detail" >
-        <img :src="data.img" :alt="data.title"  />
+      <div class="product-detail">
+        <img :src="data.img" :alt="data.title" />
         <span>{{ data.title }}</span>
         <div class="details">
           <span>${{ data.price }}</span>
-          <span>{{data.quantity}}</span>
           <button
             :class="{ active: active == true }"
             @click="update"
@@ -59,6 +71,7 @@ onMounted(api);
 .container {
   display: flex;
   justify-content: center;
+
   .product-detail {
     max-width: 500px;
     min-height: 400px;
@@ -70,13 +83,16 @@ onMounted(api);
     border: 1px solid #eee;
     padding: 30px;
     box-sizing: border-box;
+
     span {
       margin-top: 5px;
     }
+
     img {
       width: 100%;
       height: 300px;
     }
+
     .details {
       width: 100%;
       display: flex;
@@ -84,6 +100,7 @@ onMounted(api);
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+
       span {
         font-size: 20px;
         margin-bottom: 5px;
