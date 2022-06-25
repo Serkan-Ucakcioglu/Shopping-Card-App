@@ -1,5 +1,5 @@
 <script setup>
-import {  onMounted, ref } from "@vue/runtime-core";
+import { onMounted, ref } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import axios from "axios";
 
@@ -17,7 +17,6 @@ const getBasket = () => {
     console.log(error);
   }
 };
-
 
 onMounted(getBasket);
 </script>

@@ -21,9 +21,9 @@ onMounted(() => {
         <li v-for="product in data" :key="product.id">
           <router-link :to="{ name: 'Detail', params: { id: product.id } }">
             <img :src="product.img" :alt="product.title" />
-            <span>{{ product.title }}</span>
+            <span class="title">{{ product.title }}</span>
             <div class="add">
-              <span>${{ product.price }}</span>
+              <span class="price">${{ product.price }}</span>
               {{ product.name }}
             </div>
           </router-link>
@@ -81,15 +81,11 @@ section {
             width: 100%;
             height: 250px;
           }
-          span {
+          .title {
             margin-top: 10px;
           }
           .add {
             margin-top: 15px;
-
-            span {
-              margin-left: 10px;
-            }
           }
         }
       }
