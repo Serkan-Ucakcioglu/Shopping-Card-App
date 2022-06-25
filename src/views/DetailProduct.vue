@@ -32,8 +32,6 @@ const update = () => {
     console.log("else");
   }
 };
-
-
 onMounted(api);
 </script>
 
