@@ -2,7 +2,7 @@
 /*İMPORT */
 import HeaderBar from "@/components/HeaderBar.vue";
 import axios from "axios";
-import { ref, defineProps, computed, onMounted, watch } from "vue";
+import { ref, defineProps, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 /* */
 const props = defineProps(["id"]);
@@ -27,20 +27,12 @@ const checkBasket = computed(() => {
 const update = () => {
   if (checkBasket.value == false) {
     store.dispatch("newItem", data.value.id);
-    console.log(checkBasket.value);
     active.value = true;
   } else {
     console.log("else");
   }
 };
-watch(
-  () => data.value.id,
 
-  () => {
-    data.value.id;
-    console.log("data", data.value.id);
-  }
-);
 
 onMounted(api);
 </script>

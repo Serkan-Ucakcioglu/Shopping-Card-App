@@ -1,17 +1,25 @@
 <script setup>
-import { computed, ref } from "@vue/runtime-core";
+import {  onMounted, ref } from "@vue/runtime-core";
 import { useStore } from "vuex";
+import axios from "axios";
 
+const basketData = ref([]);
 const store = useStore();
-const count = computed(() => {
-  return store.state.count;
-});
-
+const basket = store.state.basket;
 let isOpen = ref(null);
 
-const basketList = computed(() => {
-  return store.getters.getBasket;
-});
+const getBasket = () => {
+  try {
+    axios.get(`http://localhost:3000/data/${basket}`).then((res) => {
+      basketData.value = res.data;
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+onMounted(getBasket);
 </script>
 <template>
   <header>
@@ -43,24 +51,26 @@ const basketList = computed(() => {
             </svg>
           </div>
           <span>Sepetim</span>
-          <span class="count" v-show="store.state.count > 0"> {{ count }}</span>
+          <span class="count" v-show="store.state.basket.length > 0">
+            {{ store.state.basket.length }}</span
+          >
         </a>
       </nav>
     </div>
   </header>
 
   <div
-    @mouseover="isOpen = true"
-    @mouseleave="isOpen = false"
-    v-show="isOpen == true && count > 0"
+    @mouseover="isOpen"
+    @mouseleave="!isOpen"
+    v-show="isOpen == true && basket.length > 0"
     class="shoppings"
   >
-    <h3>Sepetim ({{ count }}) Ürün</h3>
-    <div class="product" v-for="basket in basketList" :key="basket.id">
-      <img :src="basket.img" alt="" />
-      <span>{{ basket.title }}</span>
-      <span>${{ basket.price }}</span>
-    </div>
+    <h3>Sepetim ({{ basket.length }}) Ürün</h3>
+    <router-link to="/" class="product">
+      <img :src="basketData.img" alt="" />
+      <span>{{ basketData.title }}</span>
+      <span>${{ basketData.price }}</span>
+    </router-link>
 
     <div class="go-basket">
       <button>Sepete git</button>
@@ -136,11 +146,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     img {
       width: 70px;
       height: 70px;
       border-radius: 4px;
+    }
+    span {
+      color: black;
     }
   }
   .go-basket {
