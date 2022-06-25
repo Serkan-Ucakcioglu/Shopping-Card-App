@@ -1,10 +1,11 @@
 import { createStore } from "vuex";
-import createPersistedState from "vuex-persistedstate";
+// import createPersistedState from "vuex-persistedstate";
 import axios from "axios";
+
+
 
 const store = createStore({
   state: {
-    count: 0,
     list: [],
     basket: [],
     title: "Sepete Ekle",
@@ -17,11 +18,9 @@ const store = createStore({
     getTitle(state) {
       return state.title;
     },
-
-    getBasket(state) {
-      console.log("basket", state.basket);
-      return state.basket;
-    },
+    getBasket(state){
+      return state.basket
+    }
   },
 
   mutations: {
@@ -31,25 +30,20 @@ const store = createStore({
     update(state, title) {
       state.title = title;
     },
-    increment(state) {
-      state.count++;
-    },
-
     newItem(state, newItem) {
-      state.basket.push(newItem);
-    },
+      state.basket.push(newItem)
+    }
   },
-
   actions: {
-    async getData({ commit }) {
+    getData({ commit }) {
       try {
-        const data = await axios.get("http://localhost:3000/data/");
-        commit("SET_PRODUCT", data.data);
+        return axios.get("http://localhost:3000/data/").then((res) => {
+          commit("SET_PRODUCT", res.data);
+        });
       } catch (error) {
         console.log(error);
       }
     },
-
     updateName({ commit }) {
       let title = "Sepete Eklendi";
       setTimeout(() => {
@@ -58,14 +52,12 @@ const store = createStore({
       }, 1500);
       commit("update", title);
     },
-    increment({ commit }) {
-      commit("increment");
-    },
-    newItem({ commit }, ıtem) {
-      commit("newItem", ıtem);
+  
+    newItem({ commit }, item) {
+      commit("newItem", item);
     },
   },
+  //  plugins: [createPersistedState()]
 
-  plugins: [createPersistedState()],
 });
 export default store;

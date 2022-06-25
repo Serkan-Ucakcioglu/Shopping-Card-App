@@ -13,8 +13,8 @@ const getBasket = () => {
     axios.get(`http://localhost:3000/data/${basket}`).then((res) => {
       basketData.value = res.data;
     });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 
