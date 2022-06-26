@@ -6,8 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "server": "json-server db.json",
-    "start": "concurrently --names 'DB,FRONTEND' -c 'bgBlue.bold,bgMagenta.bold' 'npm run server' 'npm run serve'"
+    "start": "concurrently --names 'DB,FRONTEND' -c 'bgBlue.bold,bgMagenta.bold' 'npm run server' 'npm run serve'",
+    "server": "json-server db.json"
+    
   },
   "dependencies": {
     "axios": "^0.27.2",
