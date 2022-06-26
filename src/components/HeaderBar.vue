@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "@vue/runtime-core";
+import { onUpdated, ref, watchEffect } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import axios from "axios";
 
@@ -7,18 +7,26 @@ const basketData = ref([]);
 const store = useStore();
 const basket = store.state.basket;
 let isOpen = ref(null);
+const title = ref("");
 
 const getBasket = () => {
   try {
-    axios.get(`http://localhost:3000/data/${basket}`).then((res) => {
-      basketData.value = res.data;
-    });
+    if (basket.length > 0) {
+      axios.get(`http://localhost:3000/data/${basket}`).then((res) => {
+        basketData.value = res.data;
+      });
+    }
   } catch (error) {
     console.log(error);
   }
 };
-
-onMounted(getBasket);
+console.log("bs", basket);
+console.log("basket", store.getters.getBasket);
+watchEffect(() => {
+  basketData.value;
+  title.value = basket;
+});
+onUpdated(getBasket);
 </script>
 <template>
   <header>
@@ -58,19 +66,14 @@ onMounted(getBasket);
     </div>
   </header>
 
-  <div
-    @mouseover="isOpen"
-    @mouseleave="!isOpen"
-    v-show="isOpen == true && basket.length > 0"
-    class="shoppings"
-  >
+  <div v-show="isOpen == true && basket.length" class="shoppings">
     <h3>Sepetim ({{ basket.length }}) Ürün</h3>
     <router-link to="/" class="product">
       <img :src="basketData.img" alt="" />
       <span>{{ basketData.title }}</span>
       <span>${{ basketData.price }}</span>
     </router-link>
-
+    {{ title }}
     <div class="go-basket">
       <button>Sepete git</button>
     </div>

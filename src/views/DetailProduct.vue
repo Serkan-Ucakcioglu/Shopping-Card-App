@@ -20,18 +20,16 @@ const title = computed(() => {
   return store.getters.getTitle;
 });
 
-const checkBasket = computed(() => {
-  return store.state.basket.includes(data.value.id);
-});
 
 const update = () => {
-  if (checkBasket.value == false) {
+   if (!store.state.basket.includes(data.value.id)) {
     store.dispatch("newItem", data.value.id);
     active.value = true;
   } else {
     console.log("else");
   }
-};
+}
+
 onMounted(api);
 </script>
 

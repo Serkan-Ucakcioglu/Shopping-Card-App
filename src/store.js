@@ -18,9 +18,6 @@ const store = createStore({
     getTitle(state) {
       return state.title;
     },
-    getBasket(state){
-      return state.basket
-    }
   },
 
   mutations: {
