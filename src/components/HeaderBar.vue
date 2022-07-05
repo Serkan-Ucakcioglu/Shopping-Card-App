@@ -20,8 +20,8 @@ const getBasket = () => {
     console.log(error);
   }
 };
-console.log("bs", basket);
-console.log("basket", store.getters.getBasket);
+
+
 watchEffect(() => {
   basketData.value;
   title.value = basket;
