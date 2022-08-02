@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted,computed } from "vue";
+import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
@@ -18,7 +18,10 @@ onMounted(() => {
     <div class="container">
       <ul class="product-list">
         <li v-for="product in data" :key="product.id">
-          <router-link class="product" :to="{ name: 'Detail', params: { id: product.id } }">
+          <router-link
+            class="product"
+            :to="{ name: 'Detail', params: { id: product.id } }"
+          >
             <img :src="product.img" :alt="product.title" />
             <span class="title">{{ product.title }}</span>
             <div class="add">
@@ -69,7 +72,7 @@ section {
           color: white;
           cursor: pointer;
         }
-        .product{
+        .product {
           width: 100%;
           display: flex;
           flex-direction: column;

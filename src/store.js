@@ -9,6 +9,7 @@ const store = createStore({
     list: [],
     basket: [],
     title: "Sepete Ekle",
+    count: 1,
   },
 
   getters: {
@@ -28,7 +29,10 @@ const store = createStore({
       state.title = title;
     },
     newItem(state, newItem) {
-      state.basket.push(newItem)
+      if(!state.basket.newItem){
+        state.basket.push(newItem)
+      }
+  
     }
   },
   actions: {

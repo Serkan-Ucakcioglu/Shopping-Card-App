@@ -1,32 +1,16 @@
 <script setup>
-import { onUpdated, ref, watchEffect } from "@vue/runtime-core";
+import { ref, watchEffect } from "@vue/runtime-core";
 import { useStore } from "vuex";
-import axios from "axios";
 
-const basketData = ref([]);
 const store = useStore();
 const basket = store.state.basket;
 let isOpen = ref(null);
 const title = ref("");
 
-const getBasket = () => {
-  try {
-    if (basket.length > 0) {
-      axios.get(`http://localhost:3000/data/${basket}`).then((res) => {
-        basketData.value = res.data;
-      });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-
 watchEffect(() => {
-  basketData.value;
+  store.state.basket;
   title.value = basket;
 });
-onUpdated(getBasket);
 </script>
 <template>
   <header>
@@ -66,16 +50,22 @@ onUpdated(getBasket);
     </div>
   </header>
 
-  <div v-show="isOpen == true && basket.length" class="shoppings">
-    <h3>Sepetim ({{ basket.length }}) Ürün</h3>
-    <router-link to="/" class="product">
-      <img :src="basketData.img" alt="" />
-      <span>{{ basketData.title }}</span>
-      <span>${{ basketData.price }}</span>
-    </router-link>
-    {{ title }}
-    <div class="go-basket">
-      <button>Sepete git</button>
+  <div class="container">
+    <div class="shoppings">
+      <h3>Sepetim ({{ basket.length }}) Ürün</h3>
+      <router-link to="/" class="product">
+        <ul>
+          <li v-for="data in store.state.basket" :key="data.id">
+            <img :src="data.img" alt="" />
+            {{ data.id }}
+            {{ data.title }}
+          </li>
+        </ul>
+      </router-link>
+      {{ title }}
+      <div class="go-basket">
+        <button>Sepete git</button>
+      </div>
     </div>
   </div>
 </template>
@@ -92,6 +82,7 @@ header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
       img {
         width: 50px;
         height: 50px;
