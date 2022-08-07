@@ -2,8 +2,6 @@ import { createStore } from "vuex";
 // import createPersistedState from "vuex-persistedstate";
 import axios from "axios";
 
-
-
 const store = createStore({
   state: {
     list: [],
@@ -28,12 +26,20 @@ const store = createStore({
     update(state, title) {
       state.title = title;
     },
-    newItem(state, newItem) {
-      if(!state.basket.newItem){
-        state.basket.push(newItem)
+    newItem(state, item) {
+      let isProductInBasket = state.basket.find(
+        (product) => product.id === item.id
+      );
+
+      if (!isProductInBasket) {
+        state.basket.push({
+          ...item,
+          count: 1,
+        });
+      } else {
+        isProductInBasket.count++;
       }
-  
-    }
+    },
   },
   actions: {
     getData({ commit }) {
@@ -53,12 +59,11 @@ const store = createStore({
       }, 1500);
       commit("update", title);
     },
-  
+
     newItem({ commit }, item) {
       commit("newItem", item);
     },
   },
   //  plugins: [createPersistedState()]
-
 });
 export default store;

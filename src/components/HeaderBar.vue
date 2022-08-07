@@ -57,12 +57,11 @@ watchEffect(() => {
         <ul>
           <li v-for="data in store.state.basket" :key="data.id">
             <img :src="data.img" alt="" />
-            {{ data.id }}
             {{ data.title }}
+            {{data.count}}
           </li>
         </ul>
       </router-link>
-      {{ title }}
       <div class="go-basket">
         <button>Sepete git</button>
       </div>

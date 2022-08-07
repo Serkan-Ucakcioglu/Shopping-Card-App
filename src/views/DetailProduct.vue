@@ -21,12 +21,8 @@ const title = computed(() => {
 });
 
 const update = () => {
-  if (!store.state.basket.includes(data.value)) {
+ 
     store.dispatch("newItem", data.value);
-    active.value = true;
-  } else {
-    store.state.count++;
-  }
 };
 
 onMounted(api);
@@ -46,7 +42,7 @@ onMounted(api);
             @click="update"
             class="buy-btn"
           >
-            {{ title }}
+          {{title}}
           </button>
         </div>
       </div>
